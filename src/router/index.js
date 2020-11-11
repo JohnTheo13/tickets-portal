@@ -1,11 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import { getItem } from '../utils/localStorage'
+
+const getHome = () => {
+  const userToken = getItem('@user-token')
+  return !userToken ? Login : Home
+}
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: getHome()
   },
   {
     path: '/about',
