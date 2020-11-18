@@ -15,10 +15,10 @@ const login = async (username, password) => {
     console.log(data)
 
     const expiry = new Date()
-    expiry.setDate(expiry.getSeconds() + data.expires_in)
-    const userToken = { userToken: 'data.acceess_token', expiry: expiry.getTime() }
+    expiry.setSeconds(expiry.getSeconds() + data.expires_in)
+    const userToken = { userToken: 'data.acceess_token', expiry: expiry.toISOString() }
     setItem('@user-token', userToken)
-    location.reload()
+    // location.reload()
   } catch (error) {
     console.log(error)
   }

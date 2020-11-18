@@ -5,7 +5,10 @@ import { getItem } from '../utils/localStorage'
 
 const getHome = () => {
   const userToken = getItem('@user-token')
-  return !userToken ? Login : Home
+  // console.log(userToken.expiry)
+  const expires = new Date(userToken.expiry)
+  const now = new Date()
+  return now > expires ? Login : Home
 }
 
 const routes = [
