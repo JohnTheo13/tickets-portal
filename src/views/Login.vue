@@ -2,7 +2,7 @@
   <div class="login">
     <div>{{ username }}</div>
     <div>{{ password }}</div>
-    <form @submit.prevent="login">
+    <form @submit="login">
       <label for="username">Username</label>
       <input type="text" id="username" v-model="username" />
       <label for="password">password</label>
@@ -13,18 +13,19 @@
 </template>
 
 <script>
+// @flow
 import login from '../models/login'
 
 export default {
   name: 'Login',
-  data () {
+  data (): Object {
     return {
       username: '',
       password: ''
     }
   },
   methods: {
-    login (e) {
+    login (e: Event) {
       // console.log(e)
       // try {
       // console.log(this.username)

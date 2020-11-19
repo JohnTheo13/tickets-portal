@@ -1,0 +1,34 @@
+[ignore]
+
+.*/node_modules/.*
+.*/build/.*
+.*/src/registerServiceWorker.js
+.*/.*test.js
+**/*.json
+
+[include]
+
+[libs]
+./type-def-libs
+
+[lints]
+
+[options]
+
+module.system.node.resolve_dirname=node_modules
+# module.name_mapper='^Components/\([-a-zA-Z0-9$_/]+\)$/*' -> '<PROJECT_ROOT>/src/Components/\1'
+# module.name_mapper='^Reducers/\([-a-zA-Z0-9$_/]+\)$/*' -> '<PROJECT_ROOT>/src/Reducers/\1'
+# module.name_mapper='^Redux' -> '<PROJECT_ROOT>/src/Redux'
+# module.name_mapper='^Router' -> '<PROJECT_ROOT>/src/Router'
+# module.name_mapper='^Api' -> '<PROJECT_ROOT>/src/Api'
+# module.name_mapper='^Theme' -> '<PROJECT_ROOT>/src/Theme'
+# module.name_mapper='^Config' -> '<PROJECT_ROOT>/src/Config'
+# module.name_mapper='^Containers' -> '<PROJECT_ROOT>/src/Containers'
+# module.name_mapper='^Helpers' -> '<PROJECT_ROOT>/src/Helpers'
+# esproposal.class_instance_fields=ignore
+# esproposal.class_static_fields=enable
+
+[strict]
+
+[version]
+0.138.0

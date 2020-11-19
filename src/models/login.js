@@ -18,7 +18,7 @@ const login = async (username, password) => {
     expiry.setSeconds(expiry.getSeconds() + data.expires_in)
     const userToken = { userToken: 'data.acceess_token', expiry: expiry.toISOString() }
     setItem('@user-token', userToken)
-    // location.reload()
+    location.reload()
   } catch (error) {
     console.log(error)
   }
