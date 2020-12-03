@@ -3,7 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -14,7 +14,11 @@
   text-align: center;
   color: #2c3e50;
 }
-
+body {
+  background-image: url('./assets/background.png');
+  background-position: center;
+  background-size: cover;
+}
 #nav {
   padding: 30px;
 }

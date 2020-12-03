@@ -15,10 +15,11 @@
 
 [options]
 
-module.system.node.resolve_dirname=node_modules
+; module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src
 # module.name_mapper='^Components/\([-a-zA-Z0-9$_/]+\)$/*' -> '<PROJECT_ROOT>/src/Components/\1'
-# module.name_mapper='^Reducers/\([-a-zA-Z0-9$_/]+\)$/*' -> '<PROJECT_ROOT>/src/Reducers/\1'
-# module.name_mapper='^Redux' -> '<PROJECT_ROOT>/src/Redux'
+; module.name_mapper='^@\/views/\([-a-zA-Z0-9$_/]+\)$/*' -> '<PROJECT_ROOT>/src/views/\1'
+; module.name_mapper='^@\/' -> '<PROJECT_ROOT>/src/'
 # module.name_mapper='^Router' -> '<PROJECT_ROOT>/src/Router'
 # module.name_mapper='^Api' -> '<PROJECT_ROOT>/src/Api'
 # module.name_mapper='^Theme' -> '<PROJECT_ROOT>/src/Theme'

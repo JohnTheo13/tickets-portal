@@ -35,6 +35,7 @@
 </template>
 
 <script>
+// @flow
 export default {
   name: 'HelloWorld',
   props: {

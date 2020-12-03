@@ -1,6 +1,7 @@
+// @flow
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
+import Home from '../views/Home'
+import Login from '@/views/Login'
 import { getItem } from '../utils/localStorage'
 
 const getHome = () => {
