@@ -1,16 +1,25 @@
 <template>
   <div class="login">
+    <div class="icon icon_header" />
     <form @submit="login">
+      <p v-show="error.length" class="input-error">error</p>
       <div class="input-field">
         <label for="username">Username</label>
+        <div class="icon icon_profile" />
         <input @input="change" type="text" id="username" v-model="username" />
       </div>
       <div class="input-field">
         <label for="password">password</label>
-        <input  @input="change" type="password" id="password" v-model="password" />
+        <div class="icon icon_key" />
+        <input
+          @input="change"
+          type="password"
+          id="password"
+          v-model="password"
+        />
       </div>
-      <p v-show="error.length" >error</p>
-      <button type="submit" :disabled="!isValid()">login</button>
+      <Button type="submit" :disabled="!isValid()">Login</Button>
+      <!-- <button type="submit" :disabled="!isValid()">login</button> -->
     </form>
   </div>
 </template>
@@ -18,6 +27,8 @@
 <script>
 // @flow
 import login from '../models/login'
+import Button from '../components/Button'
+// import Button from '../components/Button.vue'
 
 interface State {
   username: string;
@@ -26,6 +37,9 @@ interface State {
 
 export default {
   name: 'Login',
+  components: {
+    Button
+  },
   data (): State {
     return {
       username: '',
@@ -55,34 +69,37 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  background: $white;
-  max-width: 40%;
-  margin: auto;
-  padding: spacer(6);
-  border: 1px solid grey;
-  height: 12em;
+  @extend .box;
   form {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    .input-field {
-      display: flex;
-      flex-direction: column;
-      > input {
-        height: 24px;
-      }
+    padding: spacer(12);
+    input {
+      padding: 8px 8px 8px 48px;
+    }
+    .input-error {
+      color: red;
+      margin: 2px 0;
+      font-size: spacer(7);
+    }
+    .icon {
+      position: absolute;
+      bottom: 0;
+      background-size: 28px;
     }
     button {
-      /* color: $primary; */
       padding: spacer(4);
       background: $primary;
       height: 50px;
       &:disabled {
-        background: grey;
+        background: $grey;
       }
     }
+  }
+  .icon_header {
+    position: relative;
+    height: 84px;
+    background-size: 150px 32px;
+    width: 100%;
+    border-bottom: 1px solid $grey;
   }
 }
 </style>

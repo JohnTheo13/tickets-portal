@@ -1,0 +1,29 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  .input-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: spacer(6);
+    > input {
+      height: 44px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.box {
+  position: relative;
+  background: $white;
+  width: 40%;
+  margin: auto;
+  border: 1px solid $grey;
+  height: fit-content;
+  padding-bottom: spacer(6);
+  @media (max-width: 960px) {
+    width: 100%;
+  }
+}

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getItem } from '../utils/localStorage'
 
 /**
  *
@@ -61,8 +62,9 @@ const api = {
    * @param {Object} [headers]
    */
   send: async (method, url, data = {}, params = {}, headers = {}) => {
+    const API_URL = process.env.VUE_APP_API_URL
+    const token = getItem('@user-token')
     try {
-      const API_URL = process.env.VUE_APP_API_URL
       return await axios({
         method,
         url: `${API_URL}/${url}`,
@@ -72,6 +74,7 @@ const api = {
         },
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token?.userToken}`,
           ...headers
         }
       })
