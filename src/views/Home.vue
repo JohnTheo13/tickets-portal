@@ -1,31 +1,37 @@
 <template>
-  <div class="overview">
+  <BoxWrapper classnames="overview">
     <div class="header">
       <div>name</div>
       <div>contact</div>
       <div>product</div>
     </div>
     <div v-cloak v-for="ticket in tickets" :key="ticket._id">
-      <router-link :to="{ name: 'Details', params: { id: ticket._id, routeTicket: JSON.stringify(ticket) } }">{{
-        ticket._name
-      }}</router-link>
-      <div>some</div>
-      <div>{{ showName(ticket._name) }}</div>
+      <router-link
+        :to="{
+          name: 'Details',
+          params: { id: ticket._id, routeTicket: JSON.stringify(ticket) }
+        }"
+        >{{ ticket._name }}</router-link
+      >
+      <a :href="`mailto://${ticket.e_mail}`">{{ticket.contact_person?._name || 'not defined'}}</a>
+      <div>{{ convertDate(ticket.date) }}</div>
     </div>
-  </div>
-  <Button @click="onclick">add</Button>
+    <Button @click="onclick">add</Button>
+  </BoxWrapper>
 </template>
 
 <script>
 // @flow
 import { Ticket } from '../models/types'
 import api from '../utils/api'
-import Button from '../components/Button.vue'
+import { Button, BoxWrapper } from '../components'
+import { dateConverter } from '../utils/helpers'
 
 export default {
   name: 'Home',
   components: {
-    Button
+    Button,
+    BoxWrapper
   },
   data (): { tickets: Ticket[] } {
     return {
@@ -53,7 +59,8 @@ export default {
     },
     onclick: function () {
       this.$router.push('/create')
-    }
+    },
+    convertDate: dateConverter
   },
   created: function () {
     this.getTickets()
@@ -61,13 +68,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .overview {
-  @extend .box;
   display: flex;
   flex-direction: column;
-  background: transparent;
-  padding-bottom: 0;
   > div {
     display: flex;
     flex-direction: row;
@@ -77,14 +81,21 @@ export default {
     padding: spacer(4) 0;
     background: $white;
     margin-bottom: 1px;
+    border-bottom: 1px solid $grey;
     > * {
       width: 33%;
+      align-self: center;
     }
   }
   .header {
     font-weight: bold;
     padding: spacer(3) 0;
     margin-bottom: 2px;
+    border-bottom: 2px solid $grey;
+  }
+  button {
+    position: relative;
+    margin: spacer(8);
   }
   [v-cloak] {
     display: none;

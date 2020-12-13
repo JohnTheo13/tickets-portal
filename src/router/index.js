@@ -34,7 +34,7 @@ const routes = [
   {
     path: '/create',
     name: 'Create',
-    component: () => import('../components/HelloWorld.vue')
+    component: () => import('../views/Create.vue')
   }
 ]
 

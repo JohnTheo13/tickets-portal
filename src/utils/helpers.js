@@ -11,3 +11,11 @@ export const isTokenValid = (): boolean => {
   const now = new Date()
   return now < expires
 }
+
+export const dateConverter = (d: Date, type?: string): string => {
+  const date = new Date(d)
+  if (type) {
+    return 'some other format'
+  }
+  return date.toLocaleDateString()
+}

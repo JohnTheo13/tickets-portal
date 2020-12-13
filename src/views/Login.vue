@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <BoxWrapper classnames="login">
     <div class="icon icon_header" />
     <form @submit="login">
       <p v-show="error.length" class="input-error">error</p>
@@ -19,16 +19,14 @@
         />
       </div>
       <Button type="submit" :disabled="!isValid()">Login</Button>
-      <!-- <button type="submit" :disabled="!isValid()">login</button> -->
     </form>
-  </div>
+  </BoxWrapper>
 </template>
 
 <script>
 // @flow
 import login from '../models/login'
-import Button from '../components/Button'
-// import Button from '../components/Button.vue'
+import { Button, BoxWrapper } from '../components'
 
 interface State {
   username: string;
@@ -38,7 +36,8 @@ interface State {
 export default {
   name: 'Login',
   components: {
-    Button
+    Button,
+    BoxWrapper
   },
   data (): State {
     return {
@@ -69,9 +68,8 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  @extend .box;
   form {
-    padding: spacer(12);
+    /* padding: spacer(12); */
     input {
       padding: 8px 8px 8px 48px;
     }
@@ -86,12 +84,7 @@ export default {
       background-size: 28px;
     }
     button {
-      padding: spacer(4);
-      background: $primary;
       height: 50px;
-      &:disabled {
-        background: $grey;
-      }
     }
   }
   .icon_header {

@@ -23,6 +23,7 @@ export default {
 button {
   padding: spacer(4);
   background: $primary;
+  width: fill;
   &:disabled {
     background: $grey;
   }

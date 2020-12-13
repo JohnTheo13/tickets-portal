@@ -3,6 +3,7 @@ form {
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
+  padding: spacer(12);
   .input-field {
     position: relative;
     display: flex;
@@ -12,18 +13,5 @@ form {
       height: 44px;
       box-sizing: border-box;
     }
-  }
-}
-
-.box {
-  position: relative;
-  background: $white;
-  width: 40%;
-  margin: auto;
-  border: 1px solid $grey;
-  height: fit-content;
-  padding-bottom: spacer(6);
-  @media (max-width: 960px) {
-    width: 100%;
   }
 }
