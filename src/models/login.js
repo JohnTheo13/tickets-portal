@@ -17,11 +17,17 @@ const login = async (username: string, password: string): Promise<void> => {
       { 'Content-Type': 'application/x-www-form-urlencoded' }
     )
 
+    const { data: { items } } = await api.get('information/client', {}, {}, {
+      Authorization: `Bearer ${data.access_token}`
+    })
+
     const expiry = new Date()
     expiry.setSeconds(expiry.getSeconds() + data.expires_in)
     const userToken = {
       userToken: data.access_token,
-      expiry: expiry.toISOString()
+      expiry: expiry.toISOString(),
+      name: items[0].relatienaam,
+      id: items[0]._id
     }
     setItem('@user-token', userToken)
     location.reload()

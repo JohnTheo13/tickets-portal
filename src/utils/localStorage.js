@@ -7,7 +7,6 @@ export const getItem = item => {
 }
 
 export const setItem = (itemKey, item) => {
-  console.log(typeof item === 'string')
   if (typeof item === 'string') {
     localStorage.setItem(itemKey, item)
   } else {

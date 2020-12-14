@@ -1,6 +1,5 @@
 <template>
   <BoxWrapper classnames="login">
-    <div class="icon icon_header" />
     <form @submit="login">
       <p v-show="error.length" class="input-error">error</p>
       <div class="input-field">

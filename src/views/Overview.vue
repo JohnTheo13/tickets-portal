@@ -20,9 +20,9 @@
 <script>
 // @flow
 import { Ticket } from '../models/types'
-import api from '../utils/api'
 import { isTokenValid, dateConverter } from '../utils/helpers'
 import { BoxWrapper } from '../components'
+import { getTicket as getItem } from '../models/tickets'
 
 export default {
   name: 'About',
@@ -38,10 +38,8 @@ export default {
   methods: {
     async getTicket (): Promise<void> {
       try {
-        const { data } = await api.get(
-          `information/ticket/${this.$route.params.id}`
-        )
-        console.log(data)
+        // eslint-disable-next-line flowtype-errors/show-errors
+        const { data } = await getItem(this.$route.params.id)
         this.ticket = data
       } catch (error) {
         console.log(error)
@@ -52,9 +50,9 @@ export default {
   created: function () {
     // this.getTickets()
 
-    console.log('route', this.$route)
+    // console.log('route', this.$route)
     const { routeTicket } = this.$route.params
-    console.log(routeTicket)
+    // console.log(routeTicket)
     if (routeTicket) {
       this.ticket = JSON.parse(routeTicket)
     } else {

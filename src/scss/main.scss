@@ -9,9 +9,18 @@ form {
     display: flex;
     flex-direction: column;
     margin-bottom: spacer(6);
-    > input {
+    input, select {
+      padding-left: spacer(4);
       height: 44px;
       box-sizing: border-box;
+    }
+    textarea {
+      height: 88px;
+    }
+    label {
+      span {
+        font-weight: bold;
+      }
     }
   }
 }

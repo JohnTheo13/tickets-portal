@@ -23,9 +23,9 @@
 <script>
 // @flow
 import { Ticket } from '../models/types'
-import api from '../utils/api'
 import { Button, BoxWrapper } from '../components'
 import { dateConverter } from '../utils/helpers'
+import { getTickets as getItems } from '../models/tickets'
 
 export default {
   name: 'Home',
@@ -41,8 +41,8 @@ export default {
   methods: {
     async getTickets (): Promise<void> {
       try {
-        const { data } = await api.get('information/ticket')
-        console.log(data)
+        // eslint-disable-next-line flowtype-errors/show-errors
+        const { data } = await getItems()
         this.tickets = data.items
       } catch (error) {
         console.log(error)
