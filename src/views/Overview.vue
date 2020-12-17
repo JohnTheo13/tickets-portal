@@ -1,18 +1,18 @@
 <template>
-  <BoxWrapper classnames="about">
-    <div v-if="!!ticket">
-      <h1>{{ ticket._name }}</h1>
-      <p>{{ ticket.ticket_description }}</p>
-      <div class="details">
-        <span
-          ><a :href="`mailto://${ticket.e_mail}`">{{
-            ticket.contact_person?._name || notExist
-          }}</a></span
-        >
-        <span>{{ ticket.product?._name || notExist }}</span>
-        <span>{{ ticket.component?._name || notExist }}</span>
-        <span>{{ convertDate(ticket.date) }}</span>
-      </div>
+  <BoxWrapper classnames="about" v-if="!!ticket">
+    <h1>{{ ticket._name }}</h1>
+    <p>{{ ticket.ticket_description }}</p>
+    <div class="details">
+      <div class="title">Contact Person</div>
+      <a :href="`mailto://${ticket.e_mail}`">{{
+        ticket.contact_person?._name || notExist
+      }}</a>
+      <div class="title">{{ this.t('overview_product') }}</div>
+      <div>{{ ticket.product?._name || notExist }}</div>
+      <div class="title">Component</div>
+      <div>{{ ticket.component?._name || notExist }}</div>
+      <div class="title">date</div>
+      <div>{{ convertDate(ticket.date) }}</div>
     </div>
   </BoxWrapper>
 </template>
@@ -32,7 +32,7 @@ export default {
   data (): { ticket: Ticket | null } {
     return {
       ticket: null,
-      notExist: 'not applicable'
+      notExist: '-'
     }
   },
   methods: {
@@ -73,19 +73,23 @@ export default {
   padding: spacer(8);
   .details {
     display: grid;
-    grid-template: repeat(2, spacer(22)) / repeat(2, auto);
+    grid-template: repeat(4, auto) / repeat(2, auto);
     gap: 0;
     align-items: center;
-    border-bottom: 1px solid $grey;
-    > span {
+    /* border-bottom: 1px solid $grey; */
+    border-top: 1px solid $grey;
+    max-width: 100%;
+    > * {
       height: 100%;
-      border-top: 1px solid $grey;
-      padding-top: spacer(5);
-      box-sizing: border-box;
-      &:nth-child(2),
-      &:last-of-type {
+      min-height: spacer(22);
+      min-width: spacer(65);
+      display: flex;
+      align-items: center;
+      border-right: 1px solid $grey;
+      border-bottom: 1px solid $grey;
+      &.title {
+        font-weight: bold;
         border-left: 1px solid $grey;
-        padding-left: spacer(6);
       }
     }
   }
