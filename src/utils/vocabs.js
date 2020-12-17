@@ -9,7 +9,8 @@
  */
 const vocabs: Object<string, string> = {
   test: 'test trans',
-  overview_product: 'Product:'
+  overview_product: 'Product:',
+  overview_status: 'Status'
 }
 
 export default vocabs

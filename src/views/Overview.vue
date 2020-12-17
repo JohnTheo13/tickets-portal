@@ -87,6 +87,7 @@ export default {
       align-items: center;
       border-right: 1px solid $grey;
       border-bottom: 1px solid $grey;
+      padding-left: spacer(2);
       &.title {
         font-weight: bold;
         border-left: 1px solid $grey;

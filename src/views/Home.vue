@@ -1,20 +1,20 @@
 <template>
   <BoxWrapper classnames="overview">
     <div class="header">
+      <div>{{ this.t('overview_status') }}</div>
       <div>name</div>
       <div>contact</div>
-      <div>product</div>
+      <div>Date</div>
     </div>
-    <div v-cloak v-for="ticket in tickets" :key="ticket._id">
-      <router-link
-        :to="{
-          name: 'Details',
-          params: { id: ticket._id, routeTicket: JSON.stringify(ticket) }
-        }"
-        >{{ ticket._name }}</router-link
-      >
-      <a :href="`mailto://${ticket.e_mail}`">{{ticket.contact_person?._name || 'not defined'}}</a>
-      <div>{{ convertDate(ticket.date) }}</div>
+    <div v-cloak v-for="ticket in tickets" :key="ticket._id" @click="goTo(ticket)">
+      <Status />
+      <div>{{ ticket._name }}</div>
+      <div>
+        <a :href="`mailto://${ticket.e_mail}`">{{
+          ticket.contact_person?._name || 'not defined'
+        }}</a>
+      </div>
+      <div >{{ convertDate(ticket.date) }}</div>
     </div>
     <Button @click="onclick">add</Button>
   </BoxWrapper>
@@ -23,7 +23,7 @@
 <script>
 // @flow
 import { Ticket } from '../models/types'
-import { Button, BoxWrapper } from '../components'
+import { Button, BoxWrapper, Status } from '../components'
 import { dateConverter } from '../utils/helpers'
 import { getTickets as getItems } from '../models/tickets'
 
@@ -31,7 +31,8 @@ export default {
   name: 'Home',
   components: {
     Button,
-    BoxWrapper
+    BoxWrapper,
+    Status
   },
   data (): { tickets: Ticket[] } {
     return {
@@ -60,6 +61,12 @@ export default {
     onclick: function () {
       this.$router.push('/create')
     },
+    goTo: function (ticket) {
+      this.$router.push({
+        name: 'Details',
+        params: { id: ticket._id, routeTicket: JSON.stringify(ticket) }
+      })
+    },
     convertDate: dateConverter
   },
   created: function () {
@@ -76,22 +83,36 @@ export default {
     display: flex;
     flex-direction: row;
     position: relative;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
     padding: spacer(4) 0;
     background: $white;
     margin-bottom: 1px;
     border-bottom: 1px solid $grey;
-    > * {
-      width: 33%;
-      align-self: center;
+    &:not(:first-of-type) {
+      cursor: pointer;
     }
-  }
-  .header {
-    font-weight: bold;
-    padding: spacer(3) 0;
-    margin-bottom: 2px;
-    border-bottom: 2px solid $grey;
+    > div {
+      &:not(:first-child) {
+        flex: 30%;
+      }
+      &:first-child {
+        flex: 10%;
+        > span {
+          float: left;
+        }
+      }
+    }
+    > * {
+      align-self: center;
+      /* width: 25%; */
+    }
+    &.header {
+      font-weight: bold;
+      padding: spacer(3) 0;
+      margin-bottom: 2px;
+      border-bottom: 2px solid $grey;
+    }
   }
   button {
     position: relative;
