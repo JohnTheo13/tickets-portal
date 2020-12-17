@@ -1,6 +1,6 @@
 <template>
   <div class="box-wrapper">
-    <div class="icon icon_header" />
+    <div class="icon icon_header" @click="goHome" />
     <div :class="classnames" >
       <slot></slot>
     </div>
@@ -9,10 +9,16 @@
 
 <script>
 // @flow
+
 export default {
   name: 'BoxWrapper',
   props: {
     classnames: String
+  },
+  methods: {
+    goHome () {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>
@@ -35,6 +41,7 @@ export default {
     height: 84px;
     background-size: 150px 32px;
     width: 100%;
+    cursor: pointer;
   }
 }
 </style>

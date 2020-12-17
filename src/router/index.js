@@ -2,19 +2,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home'
 import Login from '@/views/Login'
-import { getItem } from '../utils/localStorage'
 import { isTokenValid } from '../utils/helpers'
-
-// const getHome = () => {
-//   const userToken = getItem('@user-token')
-//   // console.log(userToken.expiry)
-//   if (!userToken) {
-//     return Login
-//   }
-//   const expires = new Date(userToken?.expiry)
-//   const now = new Date()
-//   return now > expires ? Login : Home
-// }
 
 const routes = [
   {
