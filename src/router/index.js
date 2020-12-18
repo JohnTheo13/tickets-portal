@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable flowtype-errors/show-errors */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home'
 import Login from '@/views/Login'
@@ -18,6 +19,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Overview.vue')
+  },
+  {
+    path: '/tickets',
+    name: 'Tickets',
+    component: () => import('../views/Tickets')
   },
   {
     path: '/create',
