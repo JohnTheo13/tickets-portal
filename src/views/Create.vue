@@ -2,25 +2,25 @@
   <BoxWrapper classnames="create-edit">
     <form @submit="create">
       <div class="input-field">
-        <label for="cliet">cliet</label>
+        <label for="cliet">{{ this.t('create_client') }}</label>
         <input type="text" id="cliet" v-model="clientName" disabled />
       </div>
       <div class="input-field">
-        <label for="title">title <span>*</span></label>
+        <label for="title">{{ this.t('create_title') }}<span>*</span></label>
         <input type="text" id="title" v-model="title" />
       </div>
       <div class="input-field">
-        <label for="description">description <span>*</span></label>
+        <label for="description">{{ this.t('create_description') }}<span>*</span></label>
         <textarea id="description" v-model="description" />
       </div>
       <div class="input-field">
-        <label for="codename">codename </label>
+        <label for="codename">{{ this.t('create_codename') }}</label>
         <input type="text" id="codename" v-model="codename" />
       </div>
       <div class="input-field">
-        <label for="contact">contact <span>*</span></label>
+        <label for="contact">{{ this.t('create_contact') }}<span>*</span></label>
         <select id="contact" v-model="contact">
-          <option disabled value="">Select contact</option>
+          <option disabled value="">{{ this.t('create_select_contact') }}</option>
           <option
             v-for="option in contactOptions"
             :key="option._id"
@@ -30,9 +30,9 @@
         </select>
       </div>
       <div class="input-field">
-        <label for="product">product <span>*</span></label>
+        <label for="product">{{ this.t('create_product') }}<span>*</span></label>
         <select @input="selectChange" id="product" v-model="product">
-          <option disabled value="">Select product</option>
+          <option disabled value="">{{ this.t('create_select_product') }}</option>
           <option
             v-for="option in productOptions"
             :key="option._id"
@@ -42,9 +42,9 @@
         </select>
       </div>
       <div v-if="componentOptions.length" class="input-field">
-        <label for="component">component <span>*</span></label>
+        <label for="component">{{ this.t('create_component') }}<span>*</span></label>
         <select id="component" v-model="component">
-          <option disabled value="">Select component</option>
+          <option disabled value="">{{ this.t('create_select_component') }}</option>
           <option
             v-for="option in componentOptions"
             :key="option._id"
@@ -53,7 +53,7 @@
           >
         </select>
       </div>
-      <Button type="submit" :disabled="!isValid()">Create</Button>
+      <Button type="submit" :disabled="!isValid()">{{ this.t('create_button') }}</Button>
     </form>
   </BoxWrapper>
 </template>
@@ -188,5 +188,11 @@ export default {
 
 <style lang="scss" scoped>
 .create-edit {
+  label {
+    font-weight: bold;
+  }
+  select {
+    font-size: spacer(7);
+  }
 }
 </style>

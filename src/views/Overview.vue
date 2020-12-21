@@ -4,15 +4,17 @@
     <p>{{ ticket.ticket_description }}</p>
     <div class="details">
       <div class="title">Contact Person</div>
-      <a :href="`mailto://${ticket.e_mail}`">{{
-        ticket.contact_person?._name || notExist
-      }}</a>
+      <div >
+        {{ ticket.contact_person?._name || notExist}}
+      </div>
       <div class="title">{{ this.t('overview_product') }}</div>
       <div>{{ ticket.product?._name || notExist }}</div>
-      <div class="title">Component</div>
+      <div class="title">{{ this.t('overview_component') }}</div>
       <div>{{ ticket.component?._name || notExist }}</div>
-      <div class="title">date</div>
+      <div class="title">{{ this.t('overview_date') }}</div>
       <div>{{ convertDate(ticket.date) }}</div>
+      <div class="title">{{ this.t('overview_status') }}</div>
+      <div>{{ ticket.status?._name || notExist }}</div>
     </div>
   </BoxWrapper>
 </template>

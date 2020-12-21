@@ -3,12 +3,12 @@
     <form @submit="login">
       <p v-show="error.length" class="input-error">error</p>
       <div class="input-field">
-        <label for="username">Username</label>
+        <label for="username">{{ this.t('login_username') }}</label>
         <div class="icon icon_profile" />
         <input @input="change" type="text" id="username" v-model="username" />
       </div>
       <div class="input-field">
-        <label for="password">password</label>
+        <label for="password">{{ this.t('login_password') }}</label>
         <div class="icon icon_key" />
         <input
           @input="change"
@@ -17,7 +17,7 @@
           v-model="password"
         />
       </div>
-      <Button type="submit" :disabled="!isValid()">Login</Button>
+      <Button type="submit" :disabled="!isValid()">{{ this.t('login_button') }}</Button>
     </form>
   </BoxWrapper>
 </template>
@@ -68,6 +68,9 @@ export default {
 .login {
   form {
     /* padding: spacer(12); */
+    label {
+      font-weight: bold;
+    }
     input {
       padding: 8px 8px 8px 48px;
     }

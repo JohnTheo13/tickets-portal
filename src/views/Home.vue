@@ -41,16 +41,19 @@ export default {
   flex-direction: column;
   align-items: center;
   min-height: spacer(275);
-  button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: spacer(18);
-    width: spacer(75);
-    height: spacer(75);
-    > div {
-      &:last-child {
-        margin-top: spacer(6);
+  > a {
+    text-decoration: none;
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: spacer(18);
+      width: spacer(75);
+      height: spacer(75);
+      > div {
+        &:last-child {
+          margin-top: spacer(6);
+        }
       }
     }
   }

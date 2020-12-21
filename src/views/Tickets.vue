@@ -1,19 +1,22 @@
 <template>
   <BoxWrapper classnames="overview">
     <div class="header">
-      <div>name</div>
-      <div>contact</div>
-      <div>Date</div>
-      <div>{{ this.t('overview_status') }}</div>
+      <div>{{ this.t('tickets_name') }}</div>
+      <div>{{ this.t('tickets_contact') }}</div>
+      <div>{{ this.t('tickets_date') }}</div>
+      <div>{{ this.t('tickets_status') }}</div>
     </div>
-    <div v-cloak v-for="ticket in tickets" :key="ticket._id" @click="goTo(ticket)">
+    <div
+      v-cloak
+      v-for="ticket in tickets"
+      :key="ticket._id"
+      @click="goTo(ticket)"
+    >
       <div>{{ ticket._name }}</div>
       <div>
-        <a :href="`mailto://${ticket.e_mail}`">{{
-          ticket.contact_person?._name || 'not defined'
-        }}</a>
+        {{ ticket.contact_person?._name || 'not defined' }}
       </div>
-      <div >{{ convertDate(ticket.date) }}</div>
+      <div>{{ convertDate(ticket.date) }}</div>
       <Status :status="ticket.status?._name" />
     </div>
   </BoxWrapper>

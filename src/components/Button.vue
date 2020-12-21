@@ -21,9 +21,12 @@ export default {
 
 <style lang="scss" scoped>
 button {
-  padding: spacer(4);
+  padding: spacer(6);
   background: $primary;
   width: stretch;
+  color: $white;
+  font-size: spacer(7);
+  font-weight: bold;
   &:disabled {
     background: $grey;
   }
