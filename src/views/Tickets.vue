@@ -1,13 +1,12 @@
 <template>
   <BoxWrapper classnames="overview">
     <div class="header">
-      <div>{{ this.t('overview_status') }}</div>
       <div>name</div>
       <div>contact</div>
       <div>Date</div>
+      <div>{{ this.t('overview_status') }}</div>
     </div>
     <div v-cloak v-for="ticket in tickets" :key="ticket._id" @click="goTo(ticket)">
-      <Status />
       <div>{{ ticket._name }}</div>
       <div>
         <a :href="`mailto://${ticket.e_mail}`">{{
@@ -15,6 +14,7 @@
         }}</a>
       </div>
       <div >{{ convertDate(ticket.date) }}</div>
+      <Status :status="ticket.status?._name" />
     </div>
   </BoxWrapper>
 </template>
@@ -23,7 +23,7 @@
 // @flow
 import { Ticket } from '../models/types'
 import { BoxWrapper, Status } from '../components'
-import { dateConverter } from '../utils/helpers'
+import { dateConverter, sortByStatus } from '../utils/helpers'
 import { getTickets as getItems } from '../models/tickets'
 
 export default {
@@ -42,7 +42,7 @@ export default {
       try {
         // eslint-disable-next-line flowtype-errors/show-errors
         const { data } = await getItems()
-        this.tickets = data.items
+        this.tickets = sortByStatus(data.items)
       } catch (error) {
         console.log(error)
       }
@@ -88,10 +88,10 @@ export default {
       cursor: pointer;
     }
     > div {
-      &:not(:first-child) {
+      &:not(:last-child) {
         flex: 30%;
       }
-      &:first-child {
+      &:last-child {
         flex: 10%;
         > span {
           float: left;
@@ -106,6 +106,9 @@ export default {
       padding: spacer(3) 0;
       margin-bottom: 2px;
       border-bottom: 2px solid $grey;
+      > div:last-child {
+        margin-right: spacer(4);
+      }
     }
   }
   [v-cloak] {

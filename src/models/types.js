@@ -42,4 +42,5 @@ export interface Ticket extends Base {
   product: Product;
   component: Component;
   handler: Object;
+  status: Base;
 }

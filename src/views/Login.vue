@@ -47,7 +47,6 @@ export default {
   },
   methods: {
     async login (e: Event): Promise<void> {
-      // console.log(e)
       try {
         await login(this.username, this.password)
       } catch (error) {
