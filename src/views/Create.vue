@@ -61,6 +61,7 @@
 <script>
 // @flow
 /* eslint-disable flowtype-errors/show-errors */
+import { useToast } from 'vue-toastification'
 import { Product, Component } from '../models/types'
 import { BoxWrapper, Button } from '../components'
 import { getItem } from '../utils/localStorage'
@@ -84,6 +85,21 @@ interface State {
   contactOptions: [];
 }
 
+const initialState = {
+  title: '',
+  description: '',
+  ticketDescription: '',
+  product: '',
+  component: '',
+  client: '',
+  clientId: '',
+  contact: '',
+  codename: '',
+  productOptions: [],
+  componentOptions: [],
+  contactOptions: []
+}
+
 export default {
   name: 'Home',
   components: {
@@ -92,19 +108,13 @@ export default {
   },
   data (): State {
     return {
-      title: '',
-      description: '',
-      ticketDescription: '',
-      product: '',
-      component: '',
-      client: '',
-      clientId: '',
-      contact: '',
-      codename: '',
-      productOptions: [],
-      componentOptions: [],
-      contactOptions: []
+      ...initialState
     }
+  },
+  setup () {
+    // Get toast interface
+    const toast = useToast()
+    return { toast }
   },
   methods: {
     async getAll () {
@@ -141,9 +151,14 @@ export default {
           codename: this.codename,
           description: this.title
         }
-        await createTicket(ticket)
+        const res = await createTicket(ticket)
+        if (res.status === 200) {
+          this.toast.success('Createt')
+          Object.assign(this.$data, initialState)
+        }
       } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
+        this.toast(error.message)
       }
     },
     async selectChange (e) {
