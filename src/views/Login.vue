@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     async login (e: Event): Promise<void> {
+      e.preventDefault()
       try {
         await login(this.username, this.password)
       } catch (error) {

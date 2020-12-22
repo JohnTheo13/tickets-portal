@@ -13,10 +13,10 @@
         <label for="description">{{ this.t('create_description') }}<span>*</span></label>
         <textarea id="description" v-model="description" />
       </div>
-      <div class="input-field">
+      <!-- <div class="input-field">
         <label for="codename">{{ this.t('create_codename') }}</label>
         <input type="text" id="codename" v-model="codename" />
-      </div>
+      </div> -->
       <div class="input-field">
         <label for="contact">{{ this.t('create_contact') }}<span>*</span></label>
         <select id="contact" v-model="contact">
@@ -60,7 +60,7 @@
 
 <script>
 // @flow
-/* eslint-disable flowtype-errors/show-errors */
+
 import { useToast } from 'vue-toastification'
 import { Product, Component } from '../models/types'
 import { BoxWrapper, Button } from '../components'
@@ -73,7 +73,7 @@ import {
 } from '../models'
 
 interface State {
-  codename: string;
+  // codename: string;
   description: string;
   ticketDescription: string;
   product: string;
@@ -82,7 +82,7 @@ interface State {
   clientId: string;
   productOptions: Product[];
   componentOptions: Component[];
-  contactOptions: [];
+  contactOptions: string[];
 }
 
 const initialState = {
@@ -94,7 +94,7 @@ const initialState = {
   client: '',
   clientId: '',
   contact: '',
-  codename: '',
+  // codename: '',
   productOptions: [],
   componentOptions: [],
   contactOptions: []
@@ -107,9 +107,7 @@ export default {
     BoxWrapper
   },
   data (): State {
-    return {
-      ...initialState
-    }
+    return initialState
   },
   setup () {
     // Get toast interface
@@ -148,17 +146,16 @@ export default {
           contact_person: {
             _id: this.contact
           },
-          codename: this.codename,
           description: this.title
         }
         const res = await createTicket(ticket)
         if (res.status === 200) {
-          this.toast.success('Createt')
+          this.toast.success(this.t('create_success'))
           Object.assign(this.$data, initialState)
         }
       } catch (error) {
         // console.log(error.message)
-        this.toast(error.message)
+        this.toast.error(error.message)
       }
     },
     async selectChange (e) {

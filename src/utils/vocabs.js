@@ -8,7 +8,7 @@
  * ... open for new conventions ;)
  */
 const vocabs: Object<string, string> = {
-  //login screen
+  //  login screen
   login_username: 'Username',
   login_password: 'Password',
   login_button: 'Login',
@@ -28,9 +28,10 @@ const vocabs: Object<string, string> = {
   create_select_contact: 'Select contact',
   create_select_product: 'Select product',
   create_select_component: 'Select component',
+  create_success: 'Ticket created',
   // tickets screen
   tickets_name: 'Name',
-  tickets_contact: 'Contact',
+  tickets_contact: 'Contact Person',
   tickets_date: 'Date',
   tickets_status: 'Status',
   // details screen
