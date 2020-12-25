@@ -1,6 +1,6 @@
 <template>
   <BoxWrapper classnames="create-edit">
-    <form @submit="create">
+    <form @submit.prevent="create">
       <div class="input-field">
         <label for="cliet">{{ this.t('create_client') }}</label>
         <input type="text" id="cliet" v-model="clientName" disabled />
