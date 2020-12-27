@@ -10,7 +10,9 @@
         <input type="text" id="title" v-model="title" />
       </div>
       <div class="input-field">
-        <label for="description">{{ this.t('create_description') }}<span>*</span></label>
+        <label for="description"
+          >{{ this.t('create_description') }}<span>*</span></label
+        >
         <textarea id="description" v-model="description" />
       </div>
       <!-- <div class="input-field">
@@ -18,9 +20,13 @@
         <input type="text" id="codename" v-model="codename" />
       </div> -->
       <div class="input-field">
-        <label for="contact">{{ this.t('create_contact') }}<span>*</span></label>
+        <label for="contact"
+          >{{ this.t('create_contact') }}<span>*</span></label
+        >
         <select id="contact" v-model="contact">
-          <option disabled value="">{{ this.t('create_select_contact') }}</option>
+          <option disabled value="">{{
+            this.t('create_select_contact')
+          }}</option>
           <option
             v-for="option in contactOptions"
             :key="option._id"
@@ -30,9 +36,13 @@
         </select>
       </div>
       <div class="input-field">
-        <label for="product">{{ this.t('create_product') }}<span>*</span></label>
+        <label for="product"
+          >{{ this.t('create_product') }}<span>*</span></label
+        >
         <select @input="selectChange" id="product" v-model="product">
-          <option disabled value="">{{ this.t('create_select_product') }}</option>
+          <option disabled value="">{{
+            this.t('create_select_product')
+          }}</option>
           <option
             v-for="option in productOptions"
             :key="option._id"
@@ -42,9 +52,13 @@
         </select>
       </div>
       <div v-if="componentOptions.length" class="input-field">
-        <label for="component">{{ this.t('create_component') }}<span>*</span></label>
+        <label for="component"
+          >{{ this.t('create_component') }}<span>*</span></label
+        >
         <select id="component" v-model="component">
-          <option disabled value="">{{ this.t('create_select_component') }}</option>
+          <option disabled value="">{{
+            this.t('create_select_component')
+          }}</option>
           <option
             v-for="option in componentOptions"
             :key="option._id"
@@ -53,7 +67,9 @@
           >
         </select>
       </div>
-      <Button type="submit" :disabled="!isValid()">{{ this.t('create_button') }}</Button>
+      <Button type="submit" :disabled="!isValid()">{{
+        this.t('create_button')
+      }}</Button>
     </form>
   </BoxWrapper>
 </template>
@@ -78,27 +94,24 @@ interface State {
   ticketDescription: string;
   product: string;
   component: string;
-  client: string;
+  // client: string;
   clientId: string;
   productOptions: Product[];
   componentOptions: Component[];
   contactOptions: string[];
 }
 
-const initialState = {
+const initialState = () => ({
   title: '',
   description: '',
   ticketDescription: '',
   product: '',
   component: '',
-  client: '',
-  clientId: '',
+  // client: '',
   contact: '',
+  componentOptions: []
   // codename: '',
-  productOptions: [],
-  componentOptions: [],
-  contactOptions: []
-}
+})
 
 export default {
   name: 'Home',
@@ -107,7 +120,12 @@ export default {
     BoxWrapper
   },
   data (): State {
-    return initialState
+    return {
+      ...initialState(),
+      clientId: '',
+      productOptions: [],
+      contactOptions: []
+    }
   },
   setup () {
     // Get toast interface
@@ -151,7 +169,7 @@ export default {
         const res = await createTicket(ticket)
         if (res.status === 200) {
           this.toast.success(this.t('create_success'))
-          Object.assign(this.$data, initialState)
+          Object.assign(this.$data, initialState())
         }
       } catch (error) {
         // console.log(error.message)
